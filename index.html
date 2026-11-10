@@ -1,0 +1,200 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="theme-color" content="#166534">
+    <title>MealSync</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <header class="site-header">
+        <a href="#" class="brand">
+            <span class="brand-icon" aria-hidden="true">🍴</span>
+            <div>
+                <h1>MealSync</h1>
+                <p>ORDER SMART. EAT EASY.</p>
+            </div>
+        </a>
+        <span class="header-label">School Canteen</span>
+    </header>
+
+    <main>
+        <section id="loginPage" class="panel login-panel">
+            <div class="welcome-icon" aria-hidden="true"></div>
+            <p class="eyebrow">WELCOME TO MEALSYNC</p>
+            <h2>Good food, made easy.</h2>
+            <p class="muted">Log in to order your favorite canteen meals.</p>
+
+            <form id="loginForm">
+                <label for="accountType">Account Type</label>
+                <select id="accountType">
+                    <option value="student">Student</option>
+                    <option value="staff">Staff</option>
+                </select>
+
+                <div id="studentLogin">
+                    <label for="studentNumber">Student Number</label>
+                    <input
+                        id="studentNumber"
+                        type="text"
+                        placeholder="Enter your student number"
+                        autocomplete="username"
+                        required
+                    >
+
+                    <label for="studentPassword">Password</label>
+                    <input
+                        id="studentPassword"
+                        type="password"
+                        placeholder="Enter your password"
+                        autocomplete="current-password"
+                        required
+                    >
+                </div>
+
+                <div id="staffLogin" hidden>
+                    <label for="staffUsername">Staff Username</label>
+                    <input
+                        id="staffUsername"
+                        type="text"
+                        placeholder="Enter your username"
+                        autocomplete="username"
+                    >
+
+                    <label for="staffPassword">Password</label>
+                    <input
+                        id="staffPassword"
+                        type="password"
+                        placeholder="Enter your password"
+                        autocomplete="current-password"
+                    >
+                </div>
+
+                <button type="submit" class="primary-button full-button">
+                    Log In
+                </button>
+                <p id="loginMessage" class="message" role="status"></p>
+            </form>
+
+            
+                
+            </p>
+        </section>
+
+        <section id="studentPage" hidden>
+            <div class="dashboard-heading">
+                <div>
+                    <p class="eyebrow">YOUR MEAL, YOUR WAY</p>
+                    <h2>Student Dashboard</h2>
+                    <p id="studentWelcome" class="muted"></p>
+                </div>
+                <button type="button" data-logout class="logout-button">
+                    Log Out
+                </button>
+            </div>
+
+            <nav class="quick-nav" aria-label="Student sections">
+                <a href="#menuSection">Food Menu</a>
+                <a href="#cartSection">My Cart</a>
+                <a href="#ordersSection">My Orders</a>
+            </nav>
+
+            <section id="menuSection" class="panel">
+                <div class="section-heading">
+                    <div>
+                        <p class="eyebrow">FRESH PICKS</p>
+                        <h2>Today's Menu</h2>
+                    </div>
+                    <span class="section-icon" aria-hidden="true">🍱</span>
+                </div>
+                <div id="menu" class="menu-grid"></div>
+            </section>
+
+            <section id="cartSection" class="panel">
+                <div class="section-heading">
+                    <div>
+                        <p class="eyebrow">READY WHEN YOU ARE</p>
+                        <h2>Your Cart</h2>
+                    </div>
+                    <span class="section-icon" aria-hidden="true">🛒</span>
+                </div>
+
+                <div id="cartItems">Your cart is empty.</div>
+
+                <div class="total-row">
+                    <span>Total Amount</span>
+                    <strong>₱<span id="total">0.00</span></strong>
+                </div>
+
+                <label for="payment">Payment Method</label>
+                <select id="payment" required>
+                    <option value="GCash">GCash</option>
+                    <option value="Cash">Cash</option>
+                </select>
+
+                <div id="gcashDetails" class="payment-info">
+                    <h3>Pay using GCash</h3>
+                    <p>Use the official GCash account or QR code provided by your canteen.</p>
+                    <p>Show your payment confirmation to the canteen staff. This demo does not automatically verify GCash payments.</p>
+                </div>
+
+                <div id="cashDetails" class="payment-info" hidden>
+                    <h3>Pay using Cash</h3>
+                    <p>Pay the canteen staff when collecting your order.</p>
+                </div>
+
+                <button type="button" id="placeOrderButton" class="primary-button full-button">
+                    Place Order
+                </button>
+                <p id="orderMessage" class="message" role="status"></p>
+            </section>
+
+            <section id="ordersSection" class="panel">
+                <div class="section-heading">
+                    <div>
+                        <p class="eyebrow">ORDER TRACKER</p>
+                        <h2>My Orders</h2>
+                    </div>
+                    <span class="section-icon" aria-hidden="true">📋</span>
+                </div>
+                <div id="myOrders">No orders yet.</div>
+            </section>
+        </section>
+
+        <section id="staffPage" hidden>
+            <div class="dashboard-heading">
+                <div>
+                    <p class="eyebrow">MEALSYNC MANAGEMENT</p>
+                    <h2>Staff Dashboard</h2>
+                    <p id="staffWelcome" class="muted"></p>
+                </div>
+                <button type="button" data-logout class="logout-button">
+                    Log Out
+                </button>
+            </div>
+
+            <section class="panel">
+                <div class="section-heading">
+                    <div>
+                        <p class="eyebrow">KITCHEN CONTROL</p>
+                        <h2>Customer Orders</h2>
+                    </div>
+                    <button type="button" id="refreshOrders" class="secondary-button">
+                        Refresh
+                    </button>
+                </div>
+                <div id="staffOrders">No orders yet.</div>
+            </section>
+        </section>
+    </main>
+
+    <footer>
+        <a href="#" class="footer-brand">🍴 MealSync</a>
+        <p>ORDER SMART. EAT EASY.</p>
+        <p>Smart School Canteen Ordering System</p>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+</html>
