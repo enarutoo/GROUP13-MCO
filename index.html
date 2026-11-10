@@ -1,13 +1,18 @@
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="theme-color" content="#166534">
-    <title>MealSync</title>
+    <meta name="description" content="MealSync - Smart School Canteen Ordering System">
+    <title>MealSync | School Canteen</title>
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
+
+    <a href="#mainContent" class="skip-link">Skip to content</a>
+
     <header class="site-header">
         <a href="#" class="brand">
             <span class="brand-icon" aria-hidden="true">🍴</span>
@@ -16,27 +21,39 @@
                 <p>ORDER SMART. EAT EASY.</p>
             </div>
         </a>
-        <span class="header-label">School Canteen</span>
+
+        <div class="header-right">
+            <span class="header-label">School Canteen</span>
+        </div>
     </header>
 
-    <main>
+    <main id="mainContent">
+
+        <!-- LOGIN PAGE -->
         <section id="loginPage" class="panel login-panel">
-            <div class="welcome-icon" aria-hidden="true"></div>
+
+            <div class="welcome-icon" aria-hidden="true">🍱</div>
+
             <p class="eyebrow">WELCOME TO MEALSYNC</p>
             <h2>Good food, made easy.</h2>
-            <p class="muted">Log in to order your favorite canteen meals.</p>
+            <p class="muted">
+                Order your favorite school meals quickly and conveniently.
+            </p>
 
             <form id="loginForm">
+
                 <label for="accountType">Account Type</label>
-                <select id="accountType">
+                <select id="accountType" name="accountType">
                     <option value="student">Student</option>
                     <option value="staff">Staff</option>
                 </select>
 
                 <div id="studentLogin">
+
                     <label for="studentNumber">Student Number</label>
                     <input
                         id="studentNumber"
+                        name="studentNumber"
                         type="text"
                         placeholder="Enter your student number"
                         autocomplete="username"
@@ -46,17 +63,21 @@
                     <label for="studentPassword">Password</label>
                     <input
                         id="studentPassword"
+                        name="studentPassword"
                         type="password"
                         placeholder="Enter your password"
                         autocomplete="current-password"
                         required
                     >
+
                 </div>
 
                 <div id="staffLogin" hidden>
+
                     <label for="staffUsername">Staff Username</label>
                     <input
                         id="staffUsername"
+                        name="staffUsername"
                         type="text"
                         placeholder="Enter your username"
                         autocomplete="username"
@@ -65,136 +86,261 @@
                     <label for="staffPassword">Password</label>
                     <input
                         id="staffPassword"
+                        name="staffPassword"
                         type="password"
                         placeholder="Enter your password"
                         autocomplete="current-password"
                     >
+
                 </div>
 
                 <button type="submit" class="primary-button full-button">
                     Log In
                 </button>
-                <p id="loginMessage" class="message" role="status"></p>
+
+                <p id="loginMessage" class="message" role="status" aria-live="polite"></p>
+
             </form>
 
-            
-                
-            </p>
         </section>
 
+
+        <!-- STUDENT DASHBOARD -->
         <section id="studentPage" hidden>
+
             <div class="dashboard-heading">
+
                 <div>
                     <p class="eyebrow">YOUR MEAL, YOUR WAY</p>
                     <h2>Student Dashboard</h2>
                     <p id="studentWelcome" class="muted"></p>
                 </div>
+
                 <button type="button" data-logout class="logout-button">
                     Log Out
                 </button>
+
             </div>
 
-            <nav class="quick-nav" aria-label="Student sections">
-                <a href="#menuSection">Food Menu</a>
-                <a href="#cartSection">My Cart</a>
-                <a href="#ordersSection">My Orders</a>
+
+            <!-- STUDENT NAVIGATION -->
+            <nav class="quick-nav" aria-label="Student navigation">
+
+                <a href="#menuSection">🍱 Food Menu</a>
+                <a href="#cartSection">🛒 My Cart</a>
+                <a href="#ordersSection">📋 My Orders</a>
+
             </nav>
 
+
+            <!-- FOOD MENU -->
             <section id="menuSection" class="panel">
+
                 <div class="section-heading">
+
                     <div>
                         <p class="eyebrow">FRESH PICKS</p>
                         <h2>Today's Menu</h2>
+                        <p class="muted">Discover delicious meals available today.</p>
                     </div>
+
                     <span class="section-icon" aria-hidden="true">🍱</span>
+
                 </div>
-                <div id="menu" class="menu-grid"></div>
+
+                <div class="menu-tools">
+
+                    <label for="menuSearch">Search Food</label>
+                    <input
+                        type="search"
+                        id="menuSearch"
+                        placeholder="Search your favorite food..."
+                    >
+
+                </div>
+
+                <div id="menu" class="menu-grid" aria-live="polite"></div>
+
             </section>
 
+
+            <!-- SHOPPING CART -->
             <section id="cartSection" class="panel">
+
                 <div class="section-heading">
+
                     <div>
                         <p class="eyebrow">READY WHEN YOU ARE</p>
                         <h2>Your Cart</h2>
+                        <p class="muted">Review your selected meals before ordering.</p>
                     </div>
+
                     <span class="section-icon" aria-hidden="true">🛒</span>
+
                 </div>
 
-                <div id="cartItems">Your cart is empty.</div>
+                <div id="cartItems" aria-live="polite">
+                    Your cart is empty.
+                </div>
 
                 <div class="total-row">
                     <span>Total Amount</span>
                     <strong>₱<span id="total">0.00</span></strong>
                 </div>
 
-                <label for="payment">Payment Method</label>
-                <select id="payment" required>
-                    <option value="GCash">GCash</option>
-                    <option value="Cash">Cash</option>
-                </select>
 
-                <div id="gcashDetails" class="payment-info">
-                    <h3>Pay using GCash</h3>
-                    <p>Use the official GCash account or QR code provided by your canteen.</p>
-                    <p>Show your payment confirmation to the canteen staff. This demo does not automatically verify GCash payments.</p>
+                <!-- PAYMENT -->
+                <div class="payment-section">
+
+                    <h3>Payment Information</h3>
+
+                    <label for="payment">Choose Payment Method</label>
+
+                    <select id="payment" name="payment" required>
+                        <option value="GCash">GCash</option>
+                        <option value="Cash">Cash</option>
+                    </select>
+
+                    <div id="gcashDetails" class="payment-info">
+
+                        <h3>📱 GCash Payment</h3>
+
+                        <p>
+                            Use the official GCash account or QR code
+                            provided by your school canteen.
+                        </p>
+
+                        <p>
+                            Present your payment confirmation
+                            to the canteen staff.
+                        </p>
+
+                        <small>
+                            GCash payments require staff verification.
+                        </small>
+
+                    </div>
+
+                    <div id="cashDetails" class="payment-info" hidden>
+
+                        <h3>💵 Cash Payment</h3>
+
+                        <p>
+                            Pay the canteen staff when collecting
+                            your order.
+                        </p>
+
+                    </div>
+
                 </div>
 
-                <div id="cashDetails" class="payment-info" hidden>
-                    <h3>Pay using Cash</h3>
-                    <p>Pay the canteen staff when collecting your order.</p>
-                </div>
 
-                <button type="button" id="placeOrderButton" class="primary-button full-button">
-                    Place Order
+                <button
+                    type="button"
+                    id="placeOrderButton"
+                    class="primary-button full-button"
+                >
+                    Confirm and Place Order
                 </button>
-                <p id="orderMessage" class="message" role="status"></p>
+
+                <p id="orderMessage" class="message" role="status" aria-live="polite"></p>
+
             </section>
 
+
+            <!-- ORDER HISTORY -->
             <section id="ordersSection" class="panel">
+
                 <div class="section-heading">
+
                     <div>
                         <p class="eyebrow">ORDER TRACKER</p>
                         <h2>My Orders</h2>
+                        <p class="muted">
+                            Monitor the progress of your food orders.
+                        </p>
                     </div>
+
                     <span class="section-icon" aria-hidden="true">📋</span>
+
                 </div>
-                <div id="myOrders">No orders yet.</div>
+
+                <div id="myOrders" aria-live="polite">
+                    No orders yet.
+                </div>
+
             </section>
+
         </section>
 
+
+        <!-- STAFF DASHBOARD -->
         <section id="staffPage" hidden>
+
             <div class="dashboard-heading">
+
                 <div>
                     <p class="eyebrow">MEALSYNC MANAGEMENT</p>
                     <h2>Staff Dashboard</h2>
                     <p id="staffWelcome" class="muted"></p>
                 </div>
+
                 <button type="button" data-logout class="logout-button">
                     Log Out
                 </button>
+
             </div>
 
+
+            <!-- STAFF ORDER MANAGEMENT -->
             <section class="panel">
+
                 <div class="section-heading">
+
                     <div>
                         <p class="eyebrow">KITCHEN CONTROL</p>
                         <h2>Customer Orders</h2>
+                        <p class="muted">
+                            View and manage student food orders.
+                        </p>
                     </div>
-                    <button type="button" id="refreshOrders" class="secondary-button">
-                        Refresh
+
+                    <button
+                        type="button"
+                        id="refreshOrders"
+                        class="secondary-button"
+                    >
+                        ↻ Refresh
                     </button>
+
                 </div>
-                <div id="staffOrders">No orders yet.</div>
+
+                <div id="staffOrders" aria-live="polite">
+                    No orders yet.
+                </div>
+
             </section>
+
         </section>
+
     </main>
 
-    <footer>
+
+    <!-- FOOTER -->
+    <footer class="site-footer">
+
         <a href="#" class="footer-brand">🍴 MealSync</a>
+
         <p>ORDER SMART. EAT EASY.</p>
+
         <p>Smart School Canteen Ordering System</p>
+
+        <small>© 2026 MealSync. All Rights Reserved.</small>
+
     </footer>
 
+
     <script src="script.js"></script>
+
 </body>
 </html>
