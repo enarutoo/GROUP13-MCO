@@ -6,7 +6,7 @@ const students = Array.from({ length: TOTAL_STUDENTS }, (_, index) => {
     const number = index + 1;
 
     return {
-        studentNumber: `2026-${number}`,
+        studentNumber: `2024-${number}`,
         password: "student123",
         name: `Student ${number}`
     };
