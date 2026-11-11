@@ -787,6 +787,7 @@ a:focus-visible {
         width: 42px;
         height: 42px;
         font-size: 21px;
+        padding: 14px;
     }
 
     .total-row {
